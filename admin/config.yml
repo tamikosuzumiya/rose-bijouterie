@@ -18,3 +18,4 @@ collections:
       - { label: "Categoría", name: "categoria", widget: "select", options: ["Anillos", "Collares", "Pulseras", "Pendientes", "Accesorios"] }
       - { label: "Imagen", name: "imagen", widget: "image" }
       - { label: "Color disponible", name: "color", widget: "string", required: false }
+      
