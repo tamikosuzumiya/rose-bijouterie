@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROSE</title>
+  <link rel="icon" href="img/icono.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <!-- LOGO: reemplazá la imagen img/logo.png por tu logo (PNG sin fondo).
+       Si la imagen no carga, se muestra el texto ROSE. Al tocarlo vuelve al inicio. -->
+  <h1>
+    <a href="#" class="logo-link" onclick="mostrarHome(); return false;">
+      <img src="img/logo.png" alt="ROSE" class="logo-img"
+           onerror="this.parentNode.textContent='ROSE'">
+    </a>
+  </h1>
+  <nav class="nav-container">
+    <a href="#" onclick="mostrarHome(); return false;">HOME</a>
+    <a href="#" onclick="mostrarContacto(); return false;">INFO</a>
+    <input type="search" id="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+    <select id="ordenar" class="ordenar" onchange="ordenarProductos()">
+      <option value="original">Ordenar por...</option>
+      <option value="az">Nombre: A - Z</option>
+      <option value="za">Nombre: Z - A</option>
+      <option value="precio-asc">Precio: menor a mayor</option>
+      <option value="precio-desc">Precio: mayor a menor</option>
+    </select>
+  </nav>
+</header>
+
+<hr>
+
+<!-- 🏠 HOME -->
+<div id="home">
+
+  <!-- PRODUCTOS -->
+  <div class="fondo-productos">
+    <div id="productos"></div>
+  </div>
+
+  <!-- CARRITO -->
+  <h2>🛒 Carrito</h2>
+  <ul id="carrito"></ul>
+
+  <!-- ZONA COMPRA -->
+  <div class="zona-compra">
+
+    <h2>🚚 ¿Cómo querés recibir tu pedido?</h2>
+
+    <select id="envio" onchange="toggleEnvio()">
+      <option value="retiro">Retiro en persona</option>
+      <option value="domicilio">Envío a domicilio</option>
+    </select>
+
+    <!-- 🏪 RETIRO -->
+    <div id="datos-retiro">
+      <h3>🏪 Datos para retiro</h3>
+
+      <input id="nombre" placeholder="Nombre">
+      <input id="apellido" placeholder="Apellido">
+      <input id="dni" placeholder="DNI">
+      <input id="telefono" placeholder="Teléfono">
+      <input id="email" type="email" placeholder="Correo electrónico">
+    </div>
+
+    <!-- 🚚 ENVÍO -->
+    <div id="datos-envio" style="display:none;">
+      <h3>🚚 Datos de envío</h3>
+      <p>
+        El coste de envío es a partir de $2.000 hasta $5.000 dependiendo la zona y la distancia en Rafaela.
+        <br><br>
+        Si estás en otra ciudad, enviamos por correo y el pago del envío se realiza al recibir el pedido (solo lo recibe el titular).
+        Si estás en la misma localidad, lo entrega nuestro cadete y en compras superiores a $100.000 el envío es gratis.
+      </p>
+
+      <input id="nombreEnvio" placeholder="Nombre">
+      <input id="apellidoEnvio" placeholder="Apellido">
+      <input id="direccion" placeholder="Dirección">
+      <input id="ciudad" placeholder="Ciudad">
+      <input id="provincia" placeholder="Provincia">
+      <input id="pais" placeholder="País">
+      <input id="codigoPostal" placeholder="Código Postal">
+      <input id="telefonoEnvio" placeholder="Teléfono">
+    </div>
+
+    <!-- BOTÓN -->
+    <button onclick="comprar()">Ordenar</button>
+
+  </div>
+
+</div>
+
+<!-- 📞 CONTACTO -->
+<div id="contacto" style="display:none;">
+  <h2>📞 Contacto</h2>
+
+  <p><strong>Nombre:</strong> Tamara</p>
+  <p><strong>Ciudad:</strong> Rafaela</p>
+
+  <p>
+    <strong>WhatsApp:</strong>
+    <a href="https://wa.me/5493492283696" target="_blank" rel="noopener">
+      +54 9 3492 283696
+    </a>
+  </p>
+
+  <p>
+    <strong>Instagram:</strong>
+    <a href="https://www.instagram.com/rose.bijouteri/?hl=es-la" target="_blank" rel="noopener">
+      rose.bijouteri
+    </a>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <a href="mailto:tamikosuzumiya@gmail.com">
+      tamikosuzumiya@gmail.com
+    </a>
+  </p>
+  
+  <p>
+    <strong>Alias:</strong> Rose.Bru
+  </p>
+
+  <p>
+    Para pagar por transferencia te pasamos los datos completos por WhatsApp al confirmar tu compra.
+  </p>
+
+  <!-- 📍 FOTO + UBICACIÓN: se configura en firebase-config.js (sección "local") -->
+  <div id="local-contenedor"></div>
+
+  <hr>
+
+  <h3>Bienvenid@ a ROSE</h3>
+
+  <p>
+    En <strong>ROSE</strong> es un espacio creado para quienes disfrutan expresar su personalidad a través de los pequeños detalles.
+  </p>
+
+  <p>
+    En nuestra tienda vas a encontrar una amplia variedad de accesorios para complementar tu estilo y crear combinaciones únicas:
+  </p>
+
+  <p>
+    💎 Aritos y piercings.<br>
+    🖤 Gargantillas y collares.<br>
+    💍 Anillos.<br>
+    ✨ Pulseras y cadenas.<br>
+    🎀 Hebillas y accesorios para el cabello.<br>
+    🌙 Y mucho más
+   </p>
+   <p>
+   Seleccionamos nuestros productos pensando en ofrecer variedad, estilo y buena calidad, para que puedas encontrar ese accesorio que estabas buscando o descubrir uno nuevo que se convierta en tu favorito.
+  </p>
+
+   <p>
+   📦 Envíos a domicilio y opción de retiro en persona.<br>
+💬 Atención personalizada para ayudarte a elegir o consultar por productos.<br>
+🎁 También podés realizar pedidos especiales según disponibilidad.<br>
+  </p>
+   <p>Porque un accesorio puede ser mucho más que un detalle: puede ser parte de tu estilo, tu identidad y la forma en la que querés mostrarte al mundo. 🖤✨
+   </p>
+      <p>Gracias por elegirnos y permitirnos acompañarte en cada detalle. ♡
+   </p>
+
+   
+</div>
+
+
+<div id="modalImagen" onclick="cerrarImagen(event)">
+  <!-- Flecha Izquierda -->
+  <button class="flecha flecha-izquierda" onclick="moverModal(-1, event)">&#10094;</button>
+
+  <img id="imagenGrande" src="" alt="Vista ampliada">
+
+  <!-- Flecha Derecha -->
+  <button class="flecha flecha-derecha" onclick="moverModal(1, event)">&#10095;</button>
+</div>
+
+<script>
+  let galeriaModal = [];
+  let indiceModal = 0;
+
+  document.addEventListener("click", function(event) {
+    // Captura clics únicamente en las imágenes de tarjetas de producto
+    if (event.target.tagName === "IMG" && event.target.id && event.target.id.startsWith("img-")) {
+      const imgPrincipal = event.target.src;
+      
+      // Si la imagen actual es 'sinstock.png', no abrimos el modal
+      if (imgPrincipal.includes("sinstock.png")) return;
+
+      const foto2 = event.target.dataset.foto2;
+      const foto3 = event.target.dataset.foto3;
+
+      // Construimos la lista filtrando valores vacíos o indefinidos
+      galeriaModal = [imgPrincipal];
+      if (foto2 && !foto2.includes("undefined") && foto2.trim() !== "") {
+        galeriaModal.push(foto2);
+      }
+      if (foto3 && !foto3.includes("undefined") && foto3.trim() !== "") {
+        galeriaModal.push(foto3);
+      }
+
+      indiceModal = 0;
+      actualizarFotoModal();
+      
+      // Mostrar u ocultar las flechas según la cantidad de imágenes
+      const flechas = document.querySelectorAll("#modalImagen .flecha");
+      flechas.forEach(f => f.style.display = galeriaModal.length > 1 ? "block" : "none");
+
+      document.getElementById("modalImagen").style.display = "flex";
+    }
+  });
+
+  function actualizarFotoModal() {
+    const imgEl = document.getElementById("imagenGrande");
+    imgEl.src = galeriaModal[indiceModal];
+  }
+
+  function moverModal(direccion, event) {
+    if (event) event.stopPropagation(); // Evita cerrar el modal al presionar las flechas
+    if (galeriaModal.length <= 1) return;
+
+    indiceModal += direccion;
+
+    if (indiceModal < 0) {
+      indiceModal = galeriaModal.length - 1;
+    } else if (indiceModal >= galeriaModal.length) {
+      indiceModal = 0;
+    }
+
+    actualizarFotoModal();
+  }
+
+  function cerrarImagen(event) {
+    // Cierra el modal solo al hacer clic en el fondo o en la propia imagen
+    if (event.target.id === "modalImagen" || event.target.id === "imagenGrande") {
+      document.getElementById("modalImagen").style.display = "none";
+    }
+  }
+</script>
+
+<!-- 💬 BOTÓN FLOTANTE DE WHATSAPP (consultas) -->
+<a class="wa-flotante"
+   href="https://wa.me/5493492283696?text=Hola%20ROSE!%20Tengo%20una%20consulta"
+   target="_blank" rel="noopener"
+   aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="firebase-config.js"></script>
+<script src="firebase-backend.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,806 @@
+/* ==========================================
+   1. FUENTES FUENTES EXTERNAS
+   ========================================== */
+@font-face {
+    font-family: "Cybrpnuk2";
+    src: url("fonts/Cybrpnuk2.ttf") format("truetype");
+}
+@font-face {
+    font-family: "ahabesha'stypewriter";
+    src: url("fonts/ahabesha'stypewriter.ttf") format("truetype");
+}
+@font-face {
+    font-family: "ABITE";
+    src: url("fonts/ABITE.ttf") format("truetype");
+}
+@font-face {
+    font-family: "A bit sketchy";
+    src: url("fonts/A bit sketchy.ttf") format("truetype");
+}
+@font-face {
+    font-family: "alittlepot";
+    src: url("fonts/alittlepot.ttf") format("truetype");
+}
+@font-face {
+    font-family: "A_Lolita_Scorned";
+    src: url("fonts/A_Lolita_Scorned.ttf") format("truetype");
+}
+@font-face {
+    font-family: "ALittleScribbleinMyBook";
+    src: url("fonts/ALittleScribbleinMyBook.ttf") format("truetype");
+}
+@font-face {
+    font-family: "a_neatish_font-2";
+    src: url("fonts/a_neatish_font-2.ttf") format("truetype");
+}
+@font-face {
+    font-family: "A Note";
+    src: url("fonts/A Note.ttf") format("truetype");
+}
+
+/* ==========================================
+   2. VARIABLES Y BASE (RESET)
+   ========================================== */
+:root {
+  --bg-color: #0d021a;        
+  --card-bg: #120421;        
+  --neon-purple: #f29be6;   
+  --neon-pink: #f29be6;      
+  --neon-cyan: #f29be6;
+  --text-color: #f29be6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'A Note', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+}
+
+/* Efecto Scanlines Retro */
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 900; /* Reducido para no bloquear el modal */
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ==========================================
+   3. ENCABEZADO Y NAVEGACIÓN
+   ========================================== */
+header, .navbar, .top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  width: 100%;
+  background: rgba(13, 2, 26, 0.95) !important; 
+  backdrop-filter: blur(8px);                   
+  border-bottom: 2px solid var(--neon-purple);
+  box-shadow: 0 4px 20px rgba(189, 0, 255, 0.4);
+}
+
+header h1, .logo {
+  margin: 0;
+  font-family: 'Cybrpnuk2', 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-purple);
+}
+
+.nav-container, .header-derecha {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+#modalImagen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Asegura que esté por encima de todo */
+}
+
+#imagenGrande {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid var(--neon-pink);
+  box-shadow: 0 0 25px var(--neon-pink);
+}
+
+.flecha {
+  background: rgba(13, 2, 26, 0.8);
+  color: var(--neon-cyan);
+  border: 2px solid var(--neon-cyan);
+  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  box-shadow: 0 0 15px var(--neon-cyan);
+  transition: all 0.2s ease;
+}
+
+.flecha-izquierda {
+  left: 30px; /* Quedan alineadas a los bordes de la pantalla */
+}
+
+.flecha-derecha {
+  right: 30px;
+}
+
+.flecha:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 25px var(--neon-cyan);
+}
+
+nav a, .nav-link, .header-derecha a {
+  color: var(--neon-cyan) !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px var(--neon-cyan);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+nav a:hover, .nav-link:hover, .header-derecha a:hover {
+  color: var(--neon-pink) !important;
+  text-shadow: 0 0 12px var(--neon-pink);
+  transform: scale(1.05);
+}
+
+input[type="search"], input[type="text"], .search-input {
+  background-color: #160628 !important;
+  border: 1px solid var(--neon-purple) !important;
+  border-radius: 20px;
+  color: #fff !important;
+  padding: 8px 16px;
+  outline: none;
+  box-shadow: 0 0 8px rgba(189, 0, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+input[type="search"]:focus, input[type="text"]:focus {
+  border-color: var(--neon-pink) !important;
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.modal-imagen {
+  display: none;
+  position: fixed;
+  z-index: 9999; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); 
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modal-imagen img {
+  max-width: 95vw;  
+  max-height: 95vh; 
+  object-fit: contain; 
+  border-radius: 10px;
+  border: 2px solid var(--neon-pink);
+  box-shadow: 0 0 30px var(--neon-pink);
+}
+
+h1, h2, h3 {
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px var(--neon-purple),
+    0 0 40px var(--neon-purple);
+}
+
+a {
+  color: var(--neon-cyan);
+}
+
+/* ==========================================
+   5. GRILLA Y TARJETAS DE PRODUCTO
+   ========================================== */
+#productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.producto-card, .producto, .tarjeta {
+  background-color: var(--card-bg) !important; 
+  border: 2px solid var(--neon-purple) !important;
+  box-shadow: 0 0 12px var(--neon-purple);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.producto-card:hover, .producto:hover, .tarjeta:hover {
+  border-color: var(--neon-pink) !important;
+  box-shadow: 0 0 20px var(--neon-pink);
+  transform: translateY(-5px);
+}
+
+.producto-card img, .tarjeta img, .producto img {
+  width: 100%;
+  max-width: 180px;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 8px; 
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(189, 0, 255, 0.4);
+  box-shadow: 0 0 10px rgba(189, 0, 255, 0.3);
+}
+
+.tarjeta h2, .tarjeta h3, .producto-card h2, .producto h2 {
+  color: var(--neon-cyan) !important; 
+  text-shadow: 0 0 8px var(--neon-cyan);
+  margin-top: 10px;
+  font-size: 1.3rem;
+}
+
+.tarjeta p, .tarjeta span, .precio {
+  color: var(--neon-pink) !important; 
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   6. CONTROLES, FORMULARIOS Y BOTONES
+   ========================================== */
+label {
+  font-family: 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #f29be6 !important;
+  text-shadow: 0 0 5px #00ffff;
+  margin-bottom: 4px;
+  display: block;
+}
+
+input, select {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  margin-bottom: 12px;
+  color: #ffffff !important;
+  background-color: #1a082e !important;
+  border: 1px solid var(--neon-purple) !important;
+  box-shadow: 0 0 8px var(--neon-purple);
+}
+
+input:focus, select:focus {
+  border-color: var(--neon-pink) !important;
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+button {
+  background-color: var(--neon-pink) !important;
+  color: #000000 !important;
+  border: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 12px var(--neon-pink);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: var(--neon-purple) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* ==========================================
+   7. SECCIONES ESPECIALES (CARRITO Y ZONAS)
+   ========================================== */
+#carrito, .carrito-contenedor, ul#lista-carrito {
+  background-color: var(--card-bg) !important; 
+  border: 2px solid var(--neon-purple);
+  box-shadow: 0 0 15px var(--neon-purple);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  list-style: none;
+}
+
+#carrito li, .carrito-item, .carrito p {
+  color: #ffffff !important;
+  font-size: 1rem;
+  text-shadow: 0 0 5px var(--neon-cyan); 
+  margin-bottom: 8px;
+}
+
+/* Botón de eliminar en el carrito */
+.btn-eliminar, 
+button.delete, 
+#carrito button {
+  width: auto !important;
+  display: inline-block;
+  padding: 2px 8px !important;
+  font-size: 0.85rem !important;
+  line-height: 1;
+  background-color: transparent !important;
+  border: 1px solid var(--neon-pink) !important;
+  color: var(--neon-pink) !important;
+  box-shadow: 0 0 6px var(--neon-pink);
+  margin-left: 10px;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover, 
+#carrito button:hover {
+  background-color: var(--neon-pink) !important;
+  color: #000000 !important;
+  box-shadow: 0 0 12px var(--neon-pink);
+}
+
+.zona-compra, #datos-retiro, #datos-envio, #contacto {
+  background-color: rgba(18, 4, 33, 0.85) !important;
+  border: 2px solid var(--neon-purple);
+  box-shadow: 0 0 15px var(--neon-purple);
+  padding: 25px;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+#contacto p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Selector de orden (mismo look que el buscador) */
+select.ordenar {
+  width: auto;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   MENÚ ⋮ Y CARTEL "AGREGAR PRODUCTO"
+   ========================================== */
+.menu-admin {
+  position: relative;
+}
+
+button.menu-puntos {
+  width: auto;
+  margin: 0 0 12px 0;
+  padding: 2px 14px;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid var(--neon-purple);
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(189, 0, 255, 0.4);
+}
+
+button.menu-puntos:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 15px var(--neon-pink);
+  background: transparent !important;
+}
+
+.menu-opciones {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 210px;
+  z-index: 1000;
+  background-color: #160628;
+  border: 1px solid var(--neon-purple);
+  border-radius: 10px;
+  box-shadow: 0 0 15px var(--neon-purple);
+  overflow: hidden;
+}
+
+.menu-opciones.abierto { display: block; }
+
+.menu-opciones a {
+  display: block;
+  padding: 12px 16px;
+  white-space: nowrap;
+}
+
+#modalProducto,
+#modalLogin,
+#modalPedido {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+#modalProducto .cartel-producto,
+#modalLogin .cartel-producto,
+#modalPedido .cartel-producto {
+  width: min(540px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+#modalProducto .cartel-producto:hover,
+#modalLogin .cartel-producto:hover,
+#modalPedido .cartel-producto:hover {
+  transform: none;
+}
+
+.np-fila {
+  margin-bottom: 14px;
+  padding: 10px;
+  border: 1px solid rgba(189, 0, 255, 0.4);
+  border-radius: 8px;
+}
+
+.np-miniaturas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.np-mini { position: relative; }
+
+#modalProducto .np-mini img {
+  width: 64px;
+  height: 64px;
+  max-width: 64px;
+  margin: 0;
+}
+
+.np-mini b {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 11px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--neon-pink);
+  color: #000;
+}
+
+button.btn-secundario,
+button.btn-borrar-producto {
+  background: transparent !important;
+  color: var(--neon-pink) !important;
+  border: 1px solid var(--neon-pink);
+  box-shadow: none;
+}
+
+button.btn-secundario:hover,
+button.btn-borrar-producto:hover {
+  background-color: var(--neon-pink) !important;
+  color: #000 !important;
+}
+
+#modalLogin .cartel-login,
+#modalPedido .cartel-login {
+  width: min(380px, 92vw);
+}
+
+#lg-msg {
+  min-height: 1.4em;
+  font-size: 0.95rem;
+}
+
+.cargando {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--neon-cyan);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ==========================================
+   FOTO DEL LOCAL (abre Google Maps)
+   ========================================== */
+.local-mapa {
+  display: block;
+  position: relative;
+  max-width: 520px;
+  margin: 25px auto 8px;
+  border: 2px solid var(--neon-purple);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px var(--neon-purple);
+  text-decoration: none;
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.local-mapa:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 22px var(--neon-pink);
+  transform: scale(1.02);
+}
+
+.local-mapa img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.local-titulo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 14px 14px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 0 8px var(--neon-pink), 0 0 14px var(--neon-pink);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0));
+}
+
+#contacto .local-ayuda {
+  text-align: center;
+  color: var(--neon-cyan);
+  font-size: 0.95rem;
+}
+
+/* ==========================================
+   CATEGORÍAS, ETIQUETAS Y CONFIRMACIÓN
+   ========================================== */
+#categorias {
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0 5px;
+}
+
+button.chip-cat {
+  width: auto;
+  margin: 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  background: transparent !important;
+  color: var(--neon-cyan) !important;
+  border: 1px solid var(--neon-purple);
+  box-shadow: 0 0 8px rgba(189, 0, 255, 0.4);
+}
+
+button.chip-cat:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 12px var(--neon-pink);
+}
+
+button.chip-cat.activa {
+  background: var(--neon-pink) !important;
+  color: #000 !important;
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 12px var(--neon-pink);
+}
+
+.producto { position: relative; }
+
+.etiqueta-prod {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.etiqueta-prod.nuevo {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.etiqueta-prod.agotado {
+  background: #1b1b1b;
+  color: #fff;
+  border: 1px solid var(--neon-pink);
+}
+
+.producto.agotado img { filter: grayscale(0.9); opacity: 0.6; }
+.producto.agotado button[disabled] { cursor: not-allowed; opacity: 0.5; }
+
+#modalPedido p { margin-bottom: 8px; }
+#modalPedido .pedido-ayuda { font-size: 0.9rem; color: var(--neon-cyan) !important; margin-bottom: 2px; }
+#modalPedido a { display: inline-block; margin-bottom: 10px; }
+
+/* ==========================================
+   VERSIÓN PARA CELULAR
+   ========================================== */
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+
+  .nav-container {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+  }
+
+  #buscador,
+  select.ordenar {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-bottom: 0;
+    order: 5;
+  }
+
+  .menu-admin { order: 3; }
+  button.menu-puntos { margin-bottom: 0; }
+  .menu-opciones { right: 0; }
+
+  #productos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .producto-card, .producto, .tarjeta { padding: 10px; }
+
+  .producto h3 { font-size: 1.05rem; }
+  .producto > p { font-size: 0.95rem; }
+
+  .producto img {
+    height: 130px;
+    max-width: 100%;
+  }
+
+  /* menos aire entre campos en pantallas chicas */
+  .producto br { display: none; }
+  .producto label { display: block; margin-top: 8px; }
+  .producto img { margin-bottom: 4px; }
+
+  .zona-compra, #datos-retiro, #datos-envio, #contacto {
+    padding: 15px;
+  }
+
+  #categorias { gap: 8px; }
+  button.chip-cat { padding: 5px 12px; font-size: 0.8rem; }
+
+  .local-titulo { font-size: 0.95rem; }
+
+  #modalProducto .cartel-producto { padding: 14px; }
+}
+
+@media (max-width: 400px) {
+  #productos { gap: 8px; }
+  .producto label { font-size: 0.7rem; letter-spacing: 0; }
+}
+
+/* ==========================================
+   LOGO (imagen PNG)
+   ========================================== */
+.logo-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+header h1 img.logo-img {
+  display: block;
+  height: 60px;
+  width: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  header h1 img.logo-img { height: 46px; }
+}
+
+/* ==========================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================== */
+.wa-flotante {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(18, 4, 33, 0.92);
+  color: #25d366;
+  border: 2px solid #25d366;
+  box-shadow: 0 0 14px #25d366;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wa-flotante:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 24px #25d366;
+}
+
+.wa-flotante svg {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 768px) {
+  .wa-flotante { width: 50px; height: 50px; right: 14px; }
+  .wa-flotante svg { width: 27px; height: 27px; }
+}
