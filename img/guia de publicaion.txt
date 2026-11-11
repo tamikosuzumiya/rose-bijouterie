@@ -1,0 +1,7 @@
+img/
+Id "Nº de 1 a 10 de los distintos producto que estan en Scrips." + "talle" + "color" y formato
+Ej:
+  1-XS-Rojo.png
+  1-M-Negro.png
+  2-L-Azul.png
+  no-disponible.png
