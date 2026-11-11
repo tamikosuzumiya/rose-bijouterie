@@ -44,10 +44,10 @@
 :root {
   --bg-color: #0d021a;        
   --card-bg: #120421;        
-  --neon-purple: #bd00ff;   
-  --neon-pink: #ff007f;      
-  --neon-cyan: #00ffff;
-  --text-color: #ffffff;
+  --neon-purple: #f29be6;   
+  --neon-pink: #f29be6;      
+  --neon-cyan: #f29be6;
+  --text-color: #f29be6;
 }
 
 * {
@@ -295,12 +295,12 @@ a {
    6. CONTROLES, FORMULARIOS Y BOTONES
    ========================================== */
 label {
-  font-family: 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'A Note', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
   font-size: 0.85rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #00ffff !important;
-  text-shadow: 0 0 5px #00ffff;
+  text-shadow: 0 0 5px #f29be6;
   margin-bottom: 4px;
   display: block;
 }
