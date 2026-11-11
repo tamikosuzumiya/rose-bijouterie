@@ -44,10 +44,10 @@
 :root {
   --bg-color: #0d021a;        
   --card-bg: #120421;        
-  --neon-purple: #f29be6;   
-  --neon-pink: #f29be6;      
-  --neon-cyan: #f29be6;
-  --text-color: #f29be6;
+  --neon-purple: #bd00ff;   
+  --neon-pink: #ff007f;      
+  --neon-cyan: #00ffff;
+  --text-color: #ffffff;
 }
 
 * {
@@ -295,11 +295,11 @@ a {
    6. CONTROLES, FORMULARIOS Y BOTONES
    ========================================== */
 label {
-  font-family: 'A Note', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: 'Segoe UI', Roboto, sans-serif !important;
   font-size: 0.85rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #f29be6 !important;
+  color: #00ffff !important;
   text-shadow: 0 0 5px #00ffff;
   margin-bottom: 4px;
   display: block;
@@ -772,11 +772,18 @@ header h1 img.logo-img {
 /* ==========================================
    BOTÓN FLOTANTE DE WHATSAPP
    ========================================== */
-.wa-flotante {
+.botones-flotantes {
   position: fixed;
   right: 18px;
   bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wa-flotante,
+.ig-flotante {
   width: 56px;
   height: 56px;
   display: flex;
@@ -795,12 +802,26 @@ header h1 img.logo-img {
   box-shadow: 0 0 24px #25d366;
 }
 
-.wa-flotante svg {
+/* Instagram: mismo estilo, en rosa neón */
+.ig-flotante {
+  color: var(--neon-pink);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 14px var(--neon-pink);
+}
+
+.ig-flotante:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 24px var(--neon-pink);
+}
+
+.wa-flotante svg,
+.ig-flotante svg {
   width: 30px;
   height: 30px;
 }
 
 @media (max-width: 768px) {
-  .wa-flotante { width: 50px; height: 50px; right: 14px; }
-  .wa-flotante svg { width: 27px; height: 27px; }
+  .botones-flotantes { right: 14px; gap: 10px; }
+  .wa-flotante, .ig-flotante { width: 50px; height: 50px; }
+  .wa-flotante svg, .ig-flotante svg { width: 27px; height: 27px; }
 }
